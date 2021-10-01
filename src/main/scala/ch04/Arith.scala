@@ -42,4 +42,12 @@ class Arith() {
     }
     case _ => throw NoRuleApplies()
   }
+
+  def eval(t: Term): Term =
+    try {
+      val t1 = eval1(t)
+      eval(t1)
+    } catch {
+      case e: NoRuleApplies => t
+    }
 }
